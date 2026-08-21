@@ -7,7 +7,7 @@ from .config import HORIZON_COLORS, HORIZON_AGES
 
 def plot_displacement_profile(ax, df: pd.DataFrame, 
                               show_legend=True, show_xlabel=True, show_ylabel=True, 
-                              title=None, x_limits=None, y_limits=None):
+                              title=None, x_limits=None, y_limits=None, x_tick_spacing=2):
     """
     Plots fault displacement vs distance for multiple horizons.
     """
@@ -43,7 +43,7 @@ def plot_displacement_profile(ax, df: pd.DataFrame,
             y_disp,
             linestyle='-',
             color=color,
-            linewidth=1.5,
+            linewidth=1.8,
             label=label
         )
         
@@ -66,9 +66,9 @@ def plot_displacement_profile(ax, df: pd.DataFrame,
         ax.set_ylim(y_limits)
         
     # Uniform Grid and Ticks
-    ax.grid(True, which='major', linestyle='--', linewidth=0.5, alpha=0.7)
-    ax.xaxis.set_major_locator(MultipleLocator(2)) 
-    ax.yaxis.set_major_locator(MultipleLocator(100)) 
+    ax.grid(True, which='major', linestyle='--', linewidth=0.3, alpha=0.4)
+    ax.xaxis.set_major_locator(MultipleLocator(x_tick_spacing))
+    ax.yaxis.set_major_locator(MultipleLocator(100))
     
     if show_legend:
         ax.legend(fontsize=8)
