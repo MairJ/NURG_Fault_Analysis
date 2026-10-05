@@ -123,7 +123,7 @@ def main():
     # Interpreted Seismic Horizons
     horizons = [
         (2.58, 'JT II Top', '#1b9e77'),  # top of Iffezheim Fm = Quaternary base (top vs base still unsure)
-        (15, 'JT I Top', '#d95f02'),
+        (14, 'JT I Top', '#d95f02'),  # top of Weiterstadt Fm / base of hiatus; matches HORIZON_AGES
         (18, 'OHY Top', '#7570b3'),
         (21, 'UHY Top', '#e7298a'),
         (24, 'CBS Top', '#66a61e'),
