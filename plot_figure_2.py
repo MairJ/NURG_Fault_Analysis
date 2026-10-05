@@ -25,7 +25,7 @@ def main():
     fig, (ax_strat, ax_seis) = plt.subplots(1, 2, figsize=(6.69, 4.72), gridspec_kw={'width_ratios': [2, 1]})
     
         # LEFT AXIS: STRATIGRAPHY
-        ax_strat.set_ylim(50, -4)
+    ax_strat.set_ylim(50, -4)
     ax_strat.set_xlim(0, 13)
     ax_strat.axis('off') 
     
@@ -37,33 +37,41 @@ def main():
     add_box(ax_strat, 0, 0, 1, 45, 'Cenozoic', color='#F2F91D', angle=90, fontsize=6)
     add_box(ax_strat, 0, 45, 1, 5, 'Pal.', color='#99C08D', angle=90, fontsize=8) 
     
-    add_box(ax_strat, 1, 0, 1, 2.5, 'Q', color='#F9F97F', angle=0, fontsize=5)
-    add_box(ax_strat, 1, 2.5, 1, 20.5, 'Neogene', color='#FFE619', angle=90, fontsize=6)
+    add_box(ax_strat, 1, 0, 1, 2.58, 'Q', color='#F9F97F', angle=0, fontsize=5)
+    add_box(ax_strat, 1, 2.58, 1, 20.45, 'Neogene', color='#FFE619', angle=90, fontsize=6)
     add_box(ax_strat, 1, 23, 1, 22, 'Paleogene', color='#FD9A52', angle=90, fontsize=6)
     add_box(ax_strat, 1, 45, 1, 5, 'Perm', color='#F04028', angle=90, fontsize=8) 
     
-    add_box(ax_strat, 2, 0, 1, 2.5, 'Hol.-\nPleis.', color='#FFF2AE', fontsize=4)
-    add_box(ax_strat, 2, 2.5, 1, 2.8, 'Pliocene', color='#FFFF99', fontsize=4)
-    add_box(ax_strat, 2, 5.3, 1, 17.7, 'Miocene', color='#FFFF00', angle=90, fontsize=4)
-    add_box(ax_strat, 2, 23, 1, 10.9, 'Oligocene', color='#FDC07A', angle=90, fontsize=4)
-    add_box(ax_strat, 2, 33.9, 1, 11.1, 'Eocene', color='#FDB46C', angle=90, fontsize=4)
-    add_box(ax_strat, 2, 45, 1, 5, 'Upper', color='#FB9A85', fontsize=4) 
-    
-    add_box(ax_strat, 3, 0, 1, 2.5, 'Piac.', color='#FFFFBF', fontsize=4)
-    add_box(ax_strat, 3, 2.5, 1, 2.8, 'Zanc.', color='#FFFFB3', fontsize=4)
-    add_box(ax_strat, 3, 5.3, 1, 4, 'Mess.', color='#FFFF73', fontsize=4)
-    add_box(ax_strat, 3, 9.3, 1, 4, 'Tort.', color='#FFFF66', fontsize=4)
-    add_box(ax_strat, 3, 13.3, 1, 2, 'Serr.', color='#FFFF59', fontsize=4)
-    add_box(ax_strat, 3, 15.3, 1, 2, 'Lang.', color='#FFFF4D', fontsize=4)
-    add_box(ax_strat, 3, 17.3, 1, 4, 'Burd.', color='#FFFF41', fontsize=4)
-    add_box(ax_strat, 3, 21.3, 1, 1.7, 'Aqui.', color='#FFFF33', fontsize=4)
-    add_box(ax_strat, 3, 23, 1, 4, 'Chatt.', color='#FEE6AA', fontsize=4)
-    add_box(ax_strat, 3, 27, 1, 6.9, 'Rup.', color='#FED99A', fontsize=4)
-    add_box(ax_strat, 3, 33.9, 1, 4.1, 'Pria.', color='#FDCDA1', fontsize=4)
-    add_box(ax_strat, 3, 38, 1, 3.2, 'Bart.', color='#FDC091', fontsize=4)
-    add_box(ax_strat, 3, 41.2, 1, 3.8, 'Lutet.', color='#FCB482', fontsize=4)
+    # Series / stage boundaries: ICS International Chronostratigraphic Chart v2023/09 (Ma).
+    # The axis is cut at 45 Ma (no scale below); Lutetian base (47.8 Ma) is clipped there.
+    series = [  # (top, base, label, colour, rotation)
+        (0, 2.58, 'Hol.-' + chr(10) + 'Pleis.', '#FFF2AE', 0),
+        (2.58, 5.33, 'Pliocene', '#FFFF99', 0),
+        (5.33, 23.03, 'Miocene', '#FFFF00', 90),
+        (23.03, 33.9, 'Oligocene', '#FDC07A', 90),
+        (33.9, 45, 'Eocene', '#FDB46C', 90),
+    ]
+    for top, base, lab, col, ang in series:
+        add_box(ax_strat, 2, top, 1, base - top, lab, color=col, angle=ang, fontsize=4)
+    add_box(ax_strat, 2, 45, 1, 5, 'Upper', color='#FB9A85', fontsize=4)
+
+    stages = [
+        (0, 2.58, 'Piac.', '#FFFFBF'), (2.58, 5.33, 'Zanc.', '#FFFFB3'),
+        (5.33, 7.25, 'Mess.', '#FFFF73'), (7.25, 11.63, 'Tort.', '#FFFF66'),
+        (11.63, 13.82, 'Serr.', '#FFFF59'), (13.82, 15.97, 'Lang.', '#FFFF4D'),
+        (15.97, 20.44, 'Burd.', '#FFFF41'), (20.44, 23.03, 'Aqui.', '#FFFF33'),
+        (23.03, 28.1, 'Chatt.', '#FEE6AA'), (28.1, 33.9, 'Rup.', '#FED99A'),
+        (33.9, 37.71, 'Pria.', '#FDCDA1'), (37.71, 41.03, 'Bart.', '#FDC091'),
+        (41.03, 45, 'Lutet.', '#FCB482'),
+    ]
+    for top, base, lab, col in stages:
+        add_box(ax_strat, 3, top, 1, base - top, lab, color=col, fontsize=4)
     add_box(ax_strat, 3, 45, 1, 5, 'Ypre.', color='#FCA773', fontsize=4)
-    
+
+    # Axis break: everything below 45 Ma is NOT to scale
+    ax_strat.plot([-0.05, 8.05], [45, 45], color='red', lw=0.6, ls=(0, (4, 2)))
+    ax_strat.text(-0.1, 45, 'scale break', color='red', fontsize=3.5, ha='right', va='center')
+
     ax_strat.plot([4.2, 4.2], [0, 45], color='black', lw=0.5)
     for age in [0, 5, 10, 15, 20, 25, 30, 35, 40, 45]:
         ax_strat.plot([4.2, 4.4], [age, age], color='black', lw=0.5)
@@ -71,8 +79,8 @@ def main():
     ax_strat.text(4.5, -1, "Age\n(Ma)", ha='center', fontsize=5)
 
     # Lithostratigraphy
-    add_box(ax_strat, 5, 0, 3, 2.5, 'Quaternary', color='#f4e377', draw_edges=False, fontsize=5)
-    add_box(ax_strat, 5, 2.5, 3, 2.8, 'Iffezheim\nFormation', color='#f4e377', draw_edges=False, fontsize=5)
+    add_box(ax_strat, 5, 0, 3, 2.58, 'Quaternary', color='#f4e377', draw_edges=False, fontsize=5)
+    add_box(ax_strat, 5, 2.58, 3, 2.72, 'Iffezheim\nFormation', color='#f4e377', draw_edges=False, fontsize=5)
     
     draw_wavy_line(ax_strat, 5, 8, 5.3)
     ax_strat.text(6.5, 10, 'Hiatus', ha='center', va='center', fontsize=6)
@@ -106,7 +114,7 @@ def main():
     ax_strat.plot([8, 8], [0, 52], color='black', lw=0.5)
     ax_strat.plot([6.5, 6.5], [18, 24], color='black', lw=0.5)
     ax_strat.plot([6.5, 6.5], [32, 35], color='black', lw=0.5)
-    for y_val in [0, 2.5, 15, 18, 24, 25, 26.5, 28, 29, 30.5, 32, 35, 45, 52]:
+    for y_val in [0, 2.58, 15, 18, 24, 25, 26.5, 28, 29, 30.5, 32, 35, 45, 52]:
         ax_strat.plot([5, 8], [y_val, y_val], color='black', lw=0.5)
     ax_strat.plot([6.5, 8], [21, 21], color='black', lw=0.5)
     ax_strat.plot([6.5, 8], [33, 33], color='black', lw=0.5)
@@ -114,14 +122,14 @@ def main():
 
     # Interpreted Seismic Horizons
     horizons = [
-        (5, 'JT II Top', '#1b9e77'),
+        (2.58, 'JT II Top', '#1b9e77'),  # top of Iffezheim Fm = Quaternary base (top vs base still unsure)
         (15, 'JT I Top', '#d95f02'),
         (18, 'OHY Top', '#7570b3'),
         (21, 'UHY Top', '#e7298a'),
         (24, 'CBS Top', '#66a61e'),
         (26.5, 'BNS Top', '#e6ab02'),
         (30.5, 'RT Top', '#a6761d'),
-        (45, 'T Base', 'black')
+        (45, 'T Base', 'black'),
     ]
     for age, name, color in horizons:
         ax_strat.plot([8.5, 12.5], [age, age], color=color, lw=1.5)
@@ -129,7 +137,7 @@ def main():
         ax_strat.text(12.5, age - 0.2, f"{age} Ma", va='bottom', ha='right', fontsize=6)
 
         # RIGHT AXIS: SEISMIC SECTION
-        segy_file = r'..\segy\new\representative_reflector_2D.segy'
+    segy_file = r'..\segy\new\representative_reflector_2D.segy'
     try:
         with segyio.open(segy_file, 'r', ignore_geometry=True) as f:
             data = f.trace.raw[:]
@@ -137,7 +145,7 @@ def main():
         # Only plot traces 230 to 330
         data_sliced = data[230:330, :]
         
-                custom_cmap = 'seismic'
+        custom_cmap = 'seismic'
         vmin, vmax = -15, 15
         depth_per_sample = 6 / 1000  # 6m = 0.006 km
         
