@@ -42,5 +42,14 @@ python plot_figure_5.py
 
 Results will be saved in the `analysis_output/` and `Figures/` directories, or the local directory depending on the script.
 
+## Data availability
+
+The interpreted faults and horizons in `Data/` are included. The 3D seismic reflection data (SEG-Y) are **not** part of this repository. They are available from the Hessian Agency for Nature Conservation, Environment and Geology (HLNUG) under the German Geologiedatengesetz.
+
 ## License
-Provided for scientific reproducibility in conjunction with the associated manuscript.
+
+The code is released under the MIT License (see `LICENSE`). The data in `Data/` are released under CC BY 4.0.
+
+## Citation
+
+See `CITATION.cff`. Provided for scientific reproducibility in conjunction with the associated manuscript.

@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "NURG_Fault_Analysis: Python scripts, interpreted faults and horizons for the 3D seismic analysis of the central northern Upper Rhine Graben"
+type: software
+version: 1.0.0
+date-released: 2026-11-16
+license: MIT
+repository-code: "https://github.com/MairJ/NURG_Fault_Analysis"
+abstract: >-
+  Python scripts for Expansion Index, fault throw and thickness analysis, together with the
+  interpreted fault surfaces and stratigraphic horizons (depth domain) used in the manuscript
+  "Movement history of faults under variable stress fields - insights derived from 3D seismics
+  in the central northern Upper Rhine Graben, Germany". The 3D seismic reflection data are not
+  included; they are available from the Hessian Agency for Nature Conservation, Environment
+  and Geology (HLNUG) under the Geologiedatengesetz.
+keywords:
+  - Upper Rhine Graben
+  - 3D seismic
+  - fault growth
+  - expansion index
+  - throw analysis
+  - structural geology
+authors:
+  - family-names: Mair
+    given-names: Johannes
+    affiliation: "Technical University of Darmstadt, Germany"
+  - family-names: Roy
+    given-names: Sonu
+    affiliation: "Technical University of Darmstadt, Germany"
+  - family-names: Tanner
+    given-names: David C.
+    affiliation: "LIAG Institute for Applied Geophysics, Hannover, Germany"
+  - family-names: Djahansouzi
+    given-names: Ariane
+    affiliation: "Landkreis Darmstadt-Dieburg, Abteilung Klimaschutz, Infrastruktur, Standortfoerderung, Darmstadt, Germany"
+  - family-names: Henk
+    given-names: Andreas
+    affiliation: "Technical University of Darmstadt, Germany"
